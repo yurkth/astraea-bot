@@ -24,6 +24,7 @@ def get_planet_data():
         driver.quit()
 
     with Image(blob=b64decode(b64.replace("data:image/png;base64,", ""))) as img:
+        img.crop(width=144, height=108, gravity="center")
         img.sample(*map(lambda x: x * 3, img.size))
         resized = img.make_blob()
 
