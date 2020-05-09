@@ -4,6 +4,7 @@ from os import environ
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
+from wand.image import Image
 
 
 def get_planet_data():
@@ -22,7 +23,11 @@ def get_planet_data():
     finally:
         driver.quit()
 
-    return {"name": name, "image": b64decode(b64.replace("data:image/png;base64,", ""))}
+    with Image(blob=b64decode(b64.replace("data:image/png;base64,", ""))) as img:
+        img.sample(*map(lambda x: x * 3, img.size))
+        resized = img.make_blob()
+
+    return {"name": name, "image": resized}
 
 
 def main():

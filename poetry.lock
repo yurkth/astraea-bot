@@ -213,6 +213,18 @@ secure = ["certifi", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "pyOpenSSL (>=0
 socks = ["PySocks (>=1.5.6,<1.5.7 || >1.5.7,<2.0)"]
 
 [[package]]
+category = "main"
+description = "Ctypes-based simple MagickWand API binding for Python"
+name = "wand"
+optional = false
+python-versions = "*"
+version = "0.5.9"
+
+[package.extras]
+doc = ["Sphinx (>=1.0)"]
+test = ["pytest (>=2.3.0)", "pytest-xdist (>=1.8)", "psutil (>=1.0.1)"]
+
+[[package]]
 category = "dev"
 description = "Measures number of Terminal column cells of wide-character codes"
 name = "wcwidth"
@@ -221,7 +233,7 @@ python-versions = "*"
 version = "0.1.9"
 
 [metadata]
-content-hash = "728da065379ddc48ea32563c0879152103ea23ba136eef608525b0cb2006927f"
+content-hash = "4c58e36120fb84f0434b2904e54c15f9aed9041b167144539344e044696de726"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -343,6 +355,10 @@ typed-ast = [
 urllib3 = [
     {file = "urllib3-1.25.9-py2.py3-none-any.whl", hash = "sha256:88206b0eb87e6d677d424843ac5209e3fb9d0190d0ee169599165ec25e9d9115"},
     {file = "urllib3-1.25.9.tar.gz", hash = "sha256:3018294ebefce6572a474f0604c2021e33b3fd8006ecd11d62107a5d2a963527"},
+]
+wand = [
+    {file = "Wand-0.5.9-py2.py3-none-any.whl", hash = "sha256:598e13e46779e48fcecba7b37fd9d61fcdd1e70007ccba5d5b2e731186a2ec2e"},
+    {file = "Wand-0.5.9.tar.gz", hash = "sha256:6eaca78e53fbe329b163f0f0b28f104de98edbd69a847268cc5d6a6e392b9b28"},
 ]
 wcwidth = [
     {file = "wcwidth-0.1.9-py2.py3-none-any.whl", hash = "sha256:cafe2186b3c009a04067022ce1dcd79cb38d8d65ee4f4791b8888d6599d1bbe1"},
