@@ -1,6 +1,8 @@
+from io import BytesIO
 from base64 import b64decode
 from os import environ
 
+import tweepy
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
@@ -24,19 +26,24 @@ def get_planet_data():
         driver.quit()
 
     with Image(blob=b64decode(b64.replace("data:image/png;base64,", ""))) as img:
-        img.crop(width=144, height=108, gravity="center")
+        img.crop(width=192, height=108, gravity="center")
         img.sample(*map(lambda x: x * 3, img.size))
-        resized = img.make_blob()
+        resized = BytesIO(img.make_blob())
 
     return {"name": name, "image": resized}
 
 
-def main():
-    planet = get_planet_data()
-    print(planet["name"])
-    with open("out.png", "wb") as f:
-        f.write(planet["image"])
+def tweet(message, file):
+    consumer_key = environ["CONSUMER_KEY"]
+    consumer_secret = environ["CONSUMER_SECRET"]
+    access_token = environ["ACCESS_TOKEN"]
+    access_secret = environ["ACCESS_SECRET"]
+    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+    auth.set_access_token(access_token, access_secret)
+    api = tweepy.API(auth)
+    api.update_with_media(status=message, filename="planet.png", file=file)
 
 
 if __name__ == "__main__":
-    main()
+    planet = get_planet_data()
+    tweet(planet["name"], planet["image"])

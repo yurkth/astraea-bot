@@ -8,6 +8,7 @@ authors = ["torin"]
 python = "^3.8"
 selenium = "^3.141.0"
 Wand = "^0.5.9"
+tweepy = "^3.8.0"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.7.9"
